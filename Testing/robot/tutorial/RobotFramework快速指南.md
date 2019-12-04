@@ -1,8 +1,13 @@
 # Robot Framework快速指南
 
+## 安装
 
+最快速的方法：使用Python的包管理器pip，其他方式见[官方文档](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#installing-with-pip)。
 
-## 一个例子
+```bash
+`$  pip install robotframework`
+```
+## Demo
 
 ```Robot
 # -*- coding: robot -*-
@@ -24,7 +29,7 @@ Add
     Log     ${output}
 ```
 
-
+每个robot脚本以section分割，
 
 ## 资源
 
