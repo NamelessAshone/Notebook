@@ -64,12 +64,80 @@ fake.ipv4_private()
 
 ### 本地化
 
+Faker可以通过设置语言参数，来使输出本地化. 如果没有找到对应的语言的provider, 将默认使用en_US.
+
+- 在Python脚本中设置语言:
+```python
+from faker import Faker
+fake = Faker('ja_JP')
+for _ in range(3):
+    print(fake.name())
+
+# 田辺 太郎
+# 坂本 京助
+# 宮沢 花子
+```
+
+- 在命令行下设置语言:
+> $ faker -l zh_CN name
+> 阎艳
+
+- 支持的语言, 详细[手册页](https://faker.readthedocs.io/en/master/)：
+```
+...
+de_DE - German
+el_GR - Greek
+en_US - English (United States)
+fr_FR - French
+it_IT - Italian
+ja_JP - Japanese
+ko_KR - Korean
+ru_RU - Russian
+zh_CN - Chinese (China)
+zh_TW - Chinese (Taiwan)
+...
+```
+### 常用字段(fake)
 
 
-## 资源链接
+
+### 与shell 脚本结合
+例子: 生成插入数据的insert语句.
+```bash
+#! /usr/bin/env sh
+
+i=1
+for i in {0..100}; do
+
+    id=$(faker ean8)					# 8位id
+    name=$(faker -l zh_CN company)		# 公司名
+    amount=$(faker random_int)			# 随机数量
+    merchant_id="af12dbd"				# 商家名称
+    start_date='2019-12-10'				# 开始时间
+    end_date='2019-12-30'				# 过期时间
+    is_disable=$(( $(od -An -N1 -i /dev/urandom) % 2 )) 		# 随机产生1 or 0
+    
+    # 拼接出 insert 语句
+    echo "INSERT INTO \`yxms\`.\`yxms_ticket_config\`"       \
+         "(\`id\`, \`name\`, \`amount\`, \`merchant_id\`,"   \
+         " \`start_date\`, \`end_date\`, \`is_disable\`)"    \
+         " VALUES ('$id', '${name:0:10}', '$amount', '$merchant_id', '$start_date', '$end_date', '$is_disable');"
+
+done
+```
+部分生成的语句：
+```sql
+INSERT INTO `yxms`.`yxms_ticket_config` (`id`, `name`, `amount`, `merchant_id`,  `start_date`, `end_date`, `is_disable`)  VALUES ('39825971', '凌云网络有限公司', '2201', 'af12dbd', '2019-12-10', '2019-12-30', '0');
+INSERT INTO `yxms`.`yxms_ticket_config` (`id`, `name`, `amount`, `merchant_id`,  `start_date`, `end_date`, `is_disable`)  VALUES ('01152449', '信诚致远网络有限公司', '926', 'af12dbd', '2019-12-10', '2019-12-30', '1');
+...
+```
+
+## 二. 资源链接
 
 [官方文档](https://faker.readthedocs.io/en/master/)
 [Faker项目Github仓库](https://github.com/joke2k/faker)
 
 -------------------------------------------------------
 Copyright@ShuXin Shu, Ebupt, 2019
+
+Version: 0.1
