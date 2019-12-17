@@ -13,8 +13,6 @@ Faker 是一个生成虚假数据的Python包, 使用场景包括: 填充数据�
 使用pip安装faker:
 > $ pip install faker
 
-
-
 ### 在命令行中使用Faker
 
 安装完成后, 在命令行下输入`faker name`, 生成一个名称:
@@ -25,8 +23,6 @@ Faker 是一个生成虚假数据的Python包, 使用场景包括: 填充数据�
 > $ faker adress
 > 807 Wright Cape Apt. 573
 > North John, MD 24366
-
-
 
 ### 在Python脚本中使用Faker
 
@@ -49,8 +45,6 @@ fake.text()
 
 ```
 
-
-
 ### 提供器(Providers)
 
 一个生成器属性(如: name, text, address)被称为一个*fake*. Faker中包含多个*fake*, 被打包为多个*Provider*, 用来将功能类似的*fake*归类. 常用的Provider包括: base, internet, date_time, company等. base是默认Provider, 无需添加.
@@ -68,8 +62,6 @@ faker.providers
 |__ addresss
 |__ ...
 ```
-
-
 
 > 注：生成器(generator)是Python中按一定形式编写的一类**函数**. 深入介绍见这篇[文章](https://nvie.com/posts/iterators-vs-generators/).
 
@@ -89,8 +81,6 @@ fake.ipv4_private()
 > $ faker ipv4_private
 > 172.16.237.156
 - [所有Provider的列表](https://faker.readthedocs.io/en/master/providers.html)
-
-
 
 ### 本地化
 
@@ -127,7 +117,6 @@ zh_CN - Chinese (China)
 zh_TW - Chinese (Taiwan)
 ...
 ```
-
 
 ### 常用字段(fake)
 
@@ -166,8 +155,6 @@ $ faker -l zh_CN name
 张建军
 ```
 
-
-
 ### 与 shell 脚本结合
 
 例子: 生成插入数据的insert语句.
@@ -204,8 +191,8 @@ INSERT INTO `yxms`.`yxms_ticket_config` (`id`, `name`, `amount`, `merchant_id`, 
 
 ## 二. 资源链接
 
-[官方文档](https://faker.readthedocs.io/en/master/)
-[Faker项目Github仓库](https://github.com/joke2k/faker)
+- [官方文档](https://faker.readthedocs.io/en/master/)
+- [Faker项目Github仓库](https://github.com/joke2k/faker)
 
 
 
