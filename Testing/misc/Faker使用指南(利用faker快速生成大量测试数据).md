@@ -189,6 +189,10 @@ INSERT INTO `yxms`.`yxms_ticket_config` (`id`, `name`, `amount`, `merchant_id`, 
 
 
 
+## 与 jmeter 结合
+例子: 使用faker产生一个人名, 并使用Bing搜索
+
+
 ## 二. 资源链接
 
 - [官方文档](https://faker.readthedocs.io/en/master/)
