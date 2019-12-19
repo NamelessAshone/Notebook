@@ -53,6 +53,9 @@ fake.text()
 
 ```
 faker.providers
+|__ base
+|   |__ ...
+|
 |__ internet          		 
 |   |__ ipv4_private
 |   |__ ipv4
@@ -190,7 +193,27 @@ INSERT INTO `yxms`.`yxms_ticket_config` (`id`, `name`, `amount`, `merchant_id`, 
 
 
 ## 与 jmeter 结合
-例子: 使用faker产生一个人名, 并使用Bing搜索
+
+
+在jmeter中调用外部命令, 我们可以：
+
+1. 使用 BeanShell 的`exec`函数. 像这样定义变量`${__BeanShell(exec("cmd args ..."))}`. 但是该方法有个令人遗憾的缺陷: 无法取得命令的输出, 因为`exec`将命令的输出直接打印到`stdout`并返回一个void, `__BeanShell`函数只得到了void。为了解决这个问题，我们需要重写一个exec2，返回一个字符串包含命令的执行结果。这个方法并不简单.
+
+2. 幸运的是jmeter3.1版本引入的`__groovy`函数, 可以解析groovy语句. 像这样定义变量`${__groovy("cmd args ...".execute().text())}`, 就能拿到命令的输出, 并赋值到变量中.
+
+    > 注: groovy 是 apache 基金会发布的一门脚本语言
+
+*例子: 在jmeter中, 使用faker产生一个人名, 并使用Bing搜索*
+
+此处, 定义了一个用户变量`q`值为`${__groovy("faker name".execute().text()}`. 目的是用faker产生一个人名, 存入`q`中.
+
+![Qq3iff.png](https://s2.ax1x.com/2019/12/19/Qq3iff.png)
+
+域名设置为cn.bing.com.  路径设置为/search.  添加一个http参数`q`值为`${q}`, 引用刚刚设置用户参数. 同时需要打开URL Encode, 因为人名`john tim`中间有一个空格.
+![Qq3kp8.png](https://s2.ax1x.com/2019/12/19/Qq3kp8.png)
+
+结果如下: 成功产生了一个人名`Norma Fisher`, 并向bing发起了查询请求.
+![Qq3PtP.png](https://s2.ax1x.com/2019/12/19/Qq3PtP.png)
 
 
 ## 二. 资源链接
