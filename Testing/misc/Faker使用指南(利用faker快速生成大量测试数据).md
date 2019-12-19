@@ -190,9 +190,7 @@ INSERT INTO `yxms`.`yxms_ticket_config` (`id`, `name`, `amount`, `merchant_id`, 
 ...
 ```
 
-
-
-## 与 jmeter 结合
+### 与 jmeter 结合
 
 
 在jmeter中调用外部命令, 我们可以：
@@ -216,12 +214,11 @@ INSERT INTO `yxms`.`yxms_ticket_config` (`id`, `name`, `amount`, `merchant_id`, 
 ![Qq3PtP.png](https://s2.ax1x.com/2019/12/19/Qq3PtP.png)
 
 
+
 ## 二. 资源链接
 
 - [官方文档](https://faker.readthedocs.io/en/master/)
 - [Faker项目Github仓库](https://github.com/joke2k/faker)
-
-
 
 -------------------------------------------------------
 Copyright@ShuXin Shu, Ebupt, 2019
